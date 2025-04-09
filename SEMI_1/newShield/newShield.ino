@@ -12,7 +12,11 @@
 #define delay_front 50
 #define delay_end 50
 
+<<<<<<< HEAD
 int default_speed = 150;
+=======
+#define normal_speed 100
+>>>>>>> main
 
 void set_motorR_speed(int n);
 void set_motorL_speed(int n);
