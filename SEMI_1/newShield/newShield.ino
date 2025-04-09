@@ -46,6 +46,18 @@ void loop() {
   goLeft = digitalRead(LEFT);
   goRight =digitalRead(RIGHT);
 
+<<<<<<< HEAD
+=======
+  if(goLeft==HIGH){
+    Serial.println("left");
+    delay(1000);
+    turnL();
+  }else if(goRight==HIGH){
+    Serial.println("right");
+    delay(1000);
+    turnR();
+  }
+>>>>>>> main
 
   goStr();
 /*
