@@ -16,7 +16,7 @@
 #define delay_front 50
 #define delay_end 50
 
-#define normal_speed 55
+#define normal_speed 100
 
 void set_motorR_speed(int n);
 void set_motorL_speed(int n);
@@ -51,8 +51,12 @@ void loop() {
   goRight =digitalRead(RIGHT);
 
   if(goLeft==HIGH){
+    Serial.println("left");
+    delay(1000);
     turnL();
   }else if(goRight==HIGH){
+    Serial.println("right");
+    delay(1000);
     turnR();
   }
 
