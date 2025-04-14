@@ -8,12 +8,14 @@
 #define motorL_F 5    //B-1A (PWM)
 #define motorL_B 4  //B-1B
 
-// 인식률을 위한 딜레이
-#define delay_front 50
-#define delay_end 50
+#define ECHO 10
+#define TRIG 11
 
 int default_speedR = 150;
 int default_speedL = 140;
+
+long duration;
+double distance;
 
 void set_motorR_speed(int n);
 void set_motorL_speed(int n);
@@ -34,6 +36,9 @@ void setup() {
   pinMode(LEFT, INPUT);
   pinMode(RIGHT, INPUT);
 
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+
 }
 
 bool goLeft, goRight;
@@ -41,6 +46,21 @@ bool goLeft, goRight;
 void loop() {
   goLeft = digitalRead(RIGHT);
   goRight =digitalRead(LEFT);
+
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+  duration = pulseIn(ECHO, HIGH);
+  if(duration == 0){
+    return;
+  }
+
+  distance = duration /58;
+
+  if(distance <=6){
+    stop(100);
+    return;
+  }
 
   if(goLeft==HIGH && goRight ==LOW){
 
@@ -54,7 +74,7 @@ void loop() {
     goStr();
   }
   delay(30);
-  stop(80);
+  stop(70);
 
 }
 
